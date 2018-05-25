@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DisqusProxy from './DisqusProxy';
-import { createPath } from './utils';
+import { createPath, REWRITE_URI } from './utils';
 
 export default class DisqusChecker extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class DisqusChecker extends Component {
   async componentWillMount() {
     try {
       const url = createPath(
-        `disqus.com/next/config.json?timestamp=${+new Date()}`
+        `${REWRITE_URI}/next/config.json?timestamp=${+new Date()}`
       );
       const thread = fetch(url);
 

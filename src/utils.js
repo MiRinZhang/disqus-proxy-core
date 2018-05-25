@@ -1,3 +1,3 @@
-export const REWRITE_URI = 'https://disqus.mirinzhang.com/script';
+export const REWRITE_URI = 'https://disqus.mirinzhang.com';
 
-export const createPath = url => `${REWRITE_URI}?url=${url}`;
+export const createPath = url => `${REWRITE_URI}/script?url=${url}`;
