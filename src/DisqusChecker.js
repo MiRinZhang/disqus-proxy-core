@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import DisqusProxy from './DisqusProxy';
-import { createPath, REWRITE_URI } from './utils';
 
 export default class DisqusChecker extends Component {
   constructor(props) {
@@ -13,10 +12,7 @@ export default class DisqusChecker extends Component {
 
   async componentWillMount() {
     try {
-      const url = createPath(
-        `${REWRITE_URI}/next/config.json?timestamp=${+new Date()}`
-      );
-      const thread = fetch(url);
+      const thread = fetch(`https://disqus.com/next/config.json?timestamp=${+new Date()}`);
 
       const limit = new Promise(resolve =>
         setTimeout(() => resolve({ status: 600 }), 2000)
@@ -32,7 +28,7 @@ export default class DisqusChecker extends Component {
 
       const s = document.createElement('script');
       const shortname = window.disqusProxy.shortname;
-      s.src = createPath(`${shortname}.disqus.com/embed.js`);
+      s.src = `https://${shortname}.disqus.com/embed.js`;
       s.async = true;
       s.setAttribute('data-timestamp', String(+new Date()));
       s.onload = () => {
